@@ -1,0 +1,43 @@
+version: "3"
+
+services: 
+
+  strapiapi:
+    container_name: strapiapi
+    image: strapi/strapi
+    restart: always
+    ports:
+      - "1337:1337"
+    volumes:
+      - "./app:/srv/app"
+    env_file: 
+      - .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_SSL: 'false'
+    networks:
+      - strapi-app
+
+
+  strapidbmongo:
+    container_name: strapidbmongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    volumes:
+      - ./db:/data/db
+    networks:
+      - strapi-app
+
+networks:
+  strapi-app:
+    driver: bridge

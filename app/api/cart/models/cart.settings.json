@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "name": "cart",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "cantidad": {
+      "type": "integer",
+      "required": true
+    },
+    "imagen": {
+      "type": "string"
+    },
+    "Comprado": {
+      "type": "boolean",
+      "default": false
+    },
+    "precio": {
+      "type": "float"
+    }
+  }
+}
